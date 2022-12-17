@@ -16,32 +16,35 @@ const MovieCategory = () => {
     fetch(`https://www.omdbapi.com/?s=cow&plot=full&apikey=86172ef8`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setMovies(data.Search);
         setIsLoading(false);
+      })
+      .catch((error) => {
+        setIsLoading(false);
+        setError("No Movies Found!");
+        setMovies([]);
+        console.log(error.message);
       });
-  }, [val]);
+  }, [val, error]);
 
   const searchTermHandler = (event) => {
     setSearchTerm(event.target.value);
-    try {
-      if (searchTerm.length >= 3) {
-        setIsLoading(true);
-        fetch(
-          `https://www.omdbapi.com/?s=${searchTerm}&plot=full&apikey=86172ef8`
-        )
-          .then((response) => response.json())
-          .then((data) => {
-            console.log(data);
-            setMovies(data.Search);
-            setIsLoading(false);
-          });
-      }
-    } catch (error) {
-      setIsLoading(false);
-      setError("No Movies Found!");
-      setMovies([]);
-      console.log(error);
+    if (searchTerm.length >= 3) {
+      setIsLoading(true);
+      fetch(
+        `https://www.omdbapi.com/?s=${searchTerm}&plot=full&apikey=86172ef8`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setMovies(data.Search);
+          setIsLoading(false);
+        })
+        .catch((error) => {
+          setIsLoading(false);
+          setError("No Movies Found!");
+          setMovies([]);
+          console.log(error.message);
+        });
     }
   };
 
@@ -56,6 +59,8 @@ const MovieCategory = () => {
           onChange={searchTermHandler}
         />
       </div>
+      {isLoading && <p className="loading">Loading...</p>}
+      {error && <p className="error">{error}</p>}
       {!isLoading && !error && movies && (
         <section className="MovieCategory">
           <p className="movie-category-name">
@@ -72,8 +77,6 @@ const MovieCategory = () => {
           </div>
         </section>
       )}
-      {isLoading && !error && <p className="loading">Loading...</p>}
-      {error && !isLoading && <p className="error">{error}</p>}
     </>
   );
 };
