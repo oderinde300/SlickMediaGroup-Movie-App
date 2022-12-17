@@ -1,0 +1,51 @@
+.Hero {
+  background: url(../assets/bg-2.png) no-repeat center center fixed;
+  background-size: cover;
+  height: 550px;
+  width: 100vw;
+}
+
+@media screen and (max-width: 580px) {
+  .Hero {
+    background: url(../assets/bg-2.png) no-repeat center center fixed;
+    background-size: cover;
+    overflow: hidden;
+    height: 275px;
+  }
+}
+
+.Hero-text {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 72px;
+  align-items: center;
+  width: 490px;
+  margin-left: 77px;
+  line-height: 94px;
+}
+
+@media screen and (max-width: 1020px) {
+  .Hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .Hero-text {
+    font-size: 72px;
+    width: 490px;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 580px) {
+  .Hero-text {
+    font-size: 28px;
+    width: 273px;
+    line-height: 36px;
+  }
+}

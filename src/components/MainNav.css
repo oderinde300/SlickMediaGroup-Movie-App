@@ -1,0 +1,36 @@
+.MainNav {
+  width: 100%;
+  height: 140px;
+  background-color: #292929;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+@media (max-width: 580px) {
+  .MainNav {
+    height: 57px;
+  }
+}
+
+.Navigation {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-left: 77px;
+}
+
+@media screen and (max-width: 1020px) {
+  .Navigation {
+    justify-content: center;
+    margin-left: 0;
+  }
+}
+
+.NavLogo {
+  color: #fff;
+  border: 1px solid #fff;
+  padding: 10px 20px;
+}
